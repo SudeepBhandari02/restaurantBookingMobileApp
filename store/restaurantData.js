@@ -118,7 +118,7 @@ const carouselImages = [
             "https://images.pexels.com/photos/1581384/pexels-photo-1581384.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
             "https://images.pexels.com/photos/2253643/pexels-photo-2253643.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
         ],
-        res_id: "/restaurants/restaurant_1",
+        res_id: "/restaurants/restaurants_1",
     },
     {
         images: [
@@ -129,7 +129,7 @@ const carouselImages = [
             "https://images.pexels.com/photos/1449773/pexels-photo-1449773.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
             "https://images.pexels.com/photos/1581554/pexels-photo-1581554.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
         ],
-        res_id: "/restaurants/restaurant_2",
+        res_id: "/restaurants/restaurants_2",
     },
     {
         images: [
@@ -140,7 +140,7 @@ const carouselImages = [
             "https://images.pexels.com/photos/3656787/pexels-photo-3656787.jpeg?auto=compress&cs=tinysrgb&h=138.125&fit=crop&w=154.375&dpr=1",
             "https://images.pexels.com/photos/696218/pexels-photo-696218.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
         ],
-        res_id: "/restaurants/restaurant_3",
+        res_id: "/restaurants/restaurants_3",
     },
     {
         images: [
@@ -151,7 +151,7 @@ const carouselImages = [
             "https://images.pexels.com/photos/744780/pexels-photo-744780.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
             "https://images.pexels.com/photos/1579739/pexels-photo-1579739.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
         ],
-        res_id: "/restaurants/restaurant_4",
+        res_id: "/restaurants/restaurants_4",
     },
     {
         images: [
@@ -162,7 +162,7 @@ const carouselImages = [
             "https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
             "https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
         ],
-        res_id: "/restaurants/restaurant_5",
+        res_id: "/restaurants/restaurants_5",
     },
     {
         images: [
@@ -173,7 +173,7 @@ const carouselImages = [
             "https://images.pexels.com/photos/1307698/pexels-photo-1307698.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
             "https://images.pexels.com/photos/541216/pexels-photo-541216.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
         ],
-        res_id: "/restaurants/restaurant_6",
+        res_id: "/restaurants/restaurants_6",
     },
     {
         images: [
@@ -184,7 +184,7 @@ const carouselImages = [
             "https://images.pexels.com/photos/67468/pexels-photo-67468.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
             "https://images.pexels.com/photos/15638789/pexels-photo-15638789.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=236.25&fit=crop&h=382.5",
         ],
-        res_id: "/restaurants/restaurant_7",
+        res_id: "/restaurants/restaurants_7",
     },
     {
         images: [
@@ -195,7 +195,7 @@ const carouselImages = [
             "https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
             "https://images.pexels.com/photos/262047/pexels-photo-262047.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
         ],
-        res_id: "/restaurants/restaurant_8",
+        res_id: "/restaurants/restaurants_8",
     },
     {
         images: [
@@ -206,7 +206,7 @@ const carouselImages = [
             "https://images.pexels.com/photos/1819669/pexels-photo-1819669.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
             "https://images.pexels.com/photos/1395967/pexels-photo-1395967.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
         ],
-        res_id: "/restaurants/restaurant_9",
+        res_id: "/restaurants/restaurants_9",
     },
     {
         images: [
@@ -217,7 +217,7 @@ const carouselImages = [
             "https://images.pexels.com/photos/1581384/pexels-photo-1581384.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
             "https://images.pexels.com/photos/2253643/pexels-photo-2253643.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
         ],
-        res_id: "/restaurants/restaurant_10",
+        res_id: "/restaurants/restaurants_10",
     },
     {
         images: [
@@ -228,7 +228,7 @@ const carouselImages = [
             "https://images.pexels.com/photos/1449773/pexels-photo-1449773.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
             "https://images.pexels.com/photos/1581554/pexels-photo-1581554.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
         ],
-        res_id: "/restaurants/restaurant_11",
+        res_id: "/restaurants/restaurants_11",
     },
     {
         images: [
@@ -239,25 +239,25 @@ const carouselImages = [
             "https://images.pexels.com/photos/3656787/pexels-photo-3656787.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
             "https://images.pexels.com/photos/696218/pexels-photo-696218.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
         ],
-        res_id: "/restaurants/restaurant_12",
+        res_id: "/restaurants/restaurants_12",
     },
 ];
 
 const slots = [
     {
-        ref_id: "/restaurants/restaurant_1",
+        ref_id: "/restaurants/restaurants_1",
         slot: ["11:30", "13:30", "15:30", "17:30", "19:30", "21:30"],
     },
     {
-        ref_id: "/restaurants/restaurant_2",
+        ref_id: "/restaurants/restaurants_2",
         slot: ["10:00", "12:00", "14:00", "16:00", "18:00", "20:00"],
     },
     {
-        ref_id: "/restaurants/restaurant_3",
+        ref_id: "/restaurants/restaurants_3",
         slot: ["11:00", "13:00", "15:00", "17:00", "19:00", "21:00", "23:00"],
     },
     {
-        ref_id: "/restaurants/restaurant_4",
+        ref_id: "/restaurants/restaurants_4",
         slot: [
             "09:00",
             "11:00",
@@ -270,39 +270,39 @@ const slots = [
         ],
     },
     {
-        ref_id: "/restaurants/restaurant_5",
+        ref_id: "/restaurants/restaurants_5",
         slot: ["10:30", "12:30", "14:30", "16:30", "18:30", "20:30"],
     },
     {
-        ref_id: "/restaurants/restaurant_6",
+        ref_id: "/restaurants/restaurants_6",
         slot: ["11:00", "13:00", "15:00", "17:00", "19:00", "21:00"],
     },
     {
-        ref_id: "/restaurants/restaurant_7",
+        ref_id: "/restaurants/restaurants_7",
         slot: ["08:30", "10:30", "12:30", "14:30", "16:30", "18:30", "20:30"],
     },
     {
-        ref_id: "/restaurants/restaurant_8",
+        ref_id: "/restaurants/restaurants_8",
         slot: ["12:00", "14:00", "16:00", "18:00", "20:00", "22:00"],
     },
     {
-        ref_id: "/restaurants/restaurant_9",
+        ref_id: "/restaurants/restaurants_9",
         slot: ["10:00", "12:00", "14:00", "16:00", "18:00", "20:00"],
     },
     {
-        ref_id: "/restaurants/restaurant_10",
+        ref_id: "/restaurants/restaurants_10",
         slot: ["11:30", "13:30", "15:30", "17:30", "19:30", "21:30"],
     },
     {
-        ref_id: "/restaurants/restaurant_11",
+        ref_id: "/restaurants/restaurants_11",
         slot: ["09:30", "11:30", "13:30", "15:30", "17:30", "19:30"],
     },
     {
-        ref_id: "/restaurants/restaurant_12",
+        ref_id: "/restaurants/restaurants_12",
         slot: ["11:00", "13:00", "15:00", "17:00", "19:00", "21:00", "23:00"],
     },
     {
-        ref_id: "/restaurants/restaurant_13",
+        ref_id: "/restaurants/restaurants_13",
         slot: ["12:00", "14:00", "16:00", "18:00", "20:00", "22:00"],
     },
 ];
