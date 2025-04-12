@@ -1,4 +1,13 @@
-import {ActivityIndicator, FlatList, Image, ImageBackground, ScrollView, Text, View} from "react-native";
+import {
+    ActivityIndicator,
+    FlatList,
+    Image,
+    ImageBackground,
+    ScrollView,
+    Text,
+    TouchableOpacity,
+    View
+} from "react-native";
 import colors from "../../assets/themeColors"
 import {SafeAreaView} from "react-native-safe-area-context";
 import logo from "../../assets/images/dinetimelogo.png"
@@ -7,6 +16,7 @@ import banner from "../../assets/images/homeBanner.png"
 import {useEffect, useState} from "react";
 import {db} from "../../configurations/firebaseConfig";
 import { collection, getDocs, query } from "firebase/firestore";
+import {router} from "expo-router";
 
 export default function Home(){
 
@@ -15,12 +25,16 @@ export default function Home(){
     //     uploadData();
     // },[]);
 const createListItem = ({item}) =>(
-    <View className={"bg-gray-500 p-6  gap-2 rounded-xl w-60 shadow-2xl "} style={{elevation:20}}>
+    <TouchableOpacity onPress={()=>router.push(`/restaurant/${item.name}`)} className={"bg-gray-500 p-6  gap-2" +
+        " rounded-xl" +
+        " w-60" +
+        " shadow-2xl" +
+        " "} style={{elevation:20}}>
         <Image source={{uri:item.image}} resizeMode={"cover"} className={"h-36 rounded-xl "} />
         <Text className={"font-semibold text-center text-lg"}>{item.name}</Text>
         <Text >{item.address}</Text>
-        <Text className={"text-sm text-gray-400"}>{`Opens : ${item.opening} - Closes: ${item.closing}`}</Text>
-    </View>
+        <Text className={"text-sm text-slate-800"}>{`Opens : ${item.opening} - Closes: ${item.closing}`}</Text>
+    </TouchableOpacity>
 );
     const getData = async () => {
         console.log("inside getData - 1")
