@@ -1,6 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import {getFirestore} from "firebase/firestore";
+require("dotenv").config();
+const api_key = process.env.API_KEY;
 
 // import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -9,7 +11,7 @@ import {getFirestore} from "firebase/firestore";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyDs45JbyRQFP4QUNj9oR8hY34EmkB8E-bw",
+    apiKey: api_key,
     authDomain: "restaurant-booking-67183.firebaseapp.com",
     projectId: "restaurant-booking-67183",
     storageBucket: "restaurant-booking-67183.firebasestorage.app",
