@@ -9,12 +9,16 @@ import CarouselSlider from "../../components/carouselSlider";
 import {Ionicons} from "@expo/vector-icons";
 import DatePickerComponent from "../../components/DatePickerComponent";
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
+import PeopleSelector from "../../components/PeopleSelector";
+import SlotFinder from "../../components/SlotFinder";
 
 const Restaurant= () => {
     const [restaurantData, setRestaurantData] = useState({});
     const [carouselData, setCarouselData] = useState({});
     const [slotsData, setSlotsData] = useState({});
     const [date, setDate] = useState(new Date());
+    const [peopleSelected, setPeopleSelected] = useState(1)
+    const [selectedSlot, setSelectedSlot] = useState()
     const {restaurant} = useLocalSearchParams();
 
 
@@ -33,20 +37,20 @@ const Restaurant= () => {
             }
             for(const doc of restaurantSnapshot.docs){
                 const restaurantData = doc.data();
-                console.log(restaurantData);
+                // console.log(restaurantData);
                 setRestaurantData(restaurantData);
 
                 const carousalQuery = query(collection(db,"carousels"),where("res_id","==",doc.ref));
                 const carouselSnapshot = await getDocs(carousalQuery);
                 const carouselImages = [];
                 if (carouselSnapshot.empty) {
-                    console.log("No matching carousel found");
+                    // console.log("No matching carousel found");
                     return;
                 }
                 carouselSnapshot.forEach((carouselDoc) => {
                     carouselImages.push(carouselDoc.data());
                 });
-                console.log(carouselImages);
+                // console.log(carouselImages);
                 setCarouselData(carouselImages);
 
                 const slotsQuery = query(
@@ -56,7 +60,7 @@ const Restaurant= () => {
                 const slotsSnapshot = await getDocs(slotsQuery);
                 const slots = [];
                 if (carouselSnapshot.empty) {
-                    console.log("No matching slots found");
+                    // console.log("No matching slots found");
                     return;
                 }
                 slotsSnapshot.forEach((slotDoc) => {
@@ -84,28 +88,32 @@ const Restaurant= () => {
             </View>
 
             <View className={"flex flex-row justify-between p-6 w-full"}>
-                <View className={"flex flex-row items-center w-[40%] gap-1"}>
-                    <Ionicons name={"location-sharp"} size={30} color={colors.PRIMARY}/>
-                    <Text className={"text-gray-400"}>{restaurantData.address}</Text>
+                <View className={"flex flex-row items-center w-[50%] gap-1"}>
+                    <Ionicons name={"location-sharp"} size={24} color={colors.PRIMARY}/>
+                    <Text className={"text-gray-400 text-sm"}>{restaurantData.address}</Text>
                 </View>
-                <Pressable onPress={ ()=> Alert.alert("This feature will be added soon") } className={"flex flex-row" +
-                    " items-center w-[50%]" +
-                    " gap-1" +
-                    " justify-end"}>
-                    <Text className={"underline underline-offset-4 text-white text-xl"}>Get Direction</Text>
-                    <Ionicons name="navigate" size={30} color={colors.PRIMARY} />
+                <Pressable onPress={ ()=> Alert.alert("This feature will be added soon") } className={"flex flex-row justify-end items-center"}>
+                    <Text className={"underline underline-offset-4 text-white text-lg"}>Get Direction</Text>
+                    <Ionicons name="navigate" size={20} color={colors.PRIMARY} />
                 </Pressable>
             </View>
 
-            <View className={"flex flex-row justify-center items-center gap-2 w-full my-4"}>
-                <FontAwesome6 name="clock-four" size={24} color={colors.PRIMARY} />
-                <Text className={"text-center font-semibold text-2xl"} style={{color:colors.dark.text}}>Opens : {restaurantData.opening} - Closes : {restaurantData.closing}</Text>
+            <View className={"flex flex-row justify-start items-center gap-2 w-full px-7"}>
+                <FontAwesome6 name="clock-four" size={20} color={colors.PRIMARY} />
+                <Text className={"text-center font-semibold text-md text-gray-400"}>Opens : {restaurantData.opening} - Closes : {restaurantData.closing}</Text>
             </View>
 
-            <View className={"flex flex-row items-center justify-center gap-4 p-2 w-full"}>
-                <Text className={"text-lg text-white font-semibold"}>Book A Date : </Text>
-                <DatePickerComponent date={date} setDate={setDate} />
+            <View className={"w-fit p-6 m-4 border-2 border-amber-600 rounded-xl"}>
+                <View className={"flex flex-row items-center gap-4 p-2 w-full"}>
+                    <Text className={"text-lg text-white font-semibold"}>Book A Date : </Text>
+                    <DatePickerComponent date={date} setDate={setDate} />
+                </View>
+                <View className={"flex flex-row items-center gap-4 p-2 w-full "}>
+                    <Text className={"text-lg text-white font-semibold"}>Select No of People :  </Text>
+                    <PeopleSelector peopleSelected={peopleSelected} setPeopleSelected={setPeopleSelected} />
+                </View>
             </View>
+            <SlotFinder slots={slotsData} selectedSlot={selectedSlot} setSelectedSlot={setSelectedSlot} />
 
 
         </SafeAreaView>

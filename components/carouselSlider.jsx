@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 
 const { width } = Dimensions.get('window');
-const ITEM_WIDTH = width * 0.8;
+const ITEM_WIDTH = width * 0.95;
 const ITEM_SPACING = (width - ITEM_WIDTH) / 2;
 
 const CarouselSlider = ({ data }) => {

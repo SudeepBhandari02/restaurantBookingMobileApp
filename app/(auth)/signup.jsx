@@ -5,8 +5,7 @@ import {
   Image,
   TouchableOpacity,
   TextInput,
-  Alert,
-  TouchableWithoutFeedback,
+  TouchableWithoutFeedback, Alert,
 } from "react-native";
 import React, {useState} from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -15,14 +14,39 @@ import colors from "../../assets/themeColors";
 import frame from "../../assets/images/Frame.png";
 import { Formik } from "formik";
 import validationSchema from "../../validation/validationSchema";
-import { router } from "expo-router";
+import {useRouter} from "expo-router";
 import Entypo from '@expo/vector-icons/Entypo';
+import {getAuth,createUserWithEmailAndPassword} from "firebase/auth";
+import {doc, getFirestore, setDoc} from "firebase/firestore";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const signup = () => {
   const [iconName, setIconName] = useState("eye");
   const [passwordVisibility, setPasswordVisibility] = useState(true);
-  const handleSignUp = () => {
-    Alert.alert("Account Created Sucessfully!");
+
+  const router = useRouter();
+  const auth = getAuth();
+  const db = getFirestore();
+
+  const handleSignUp =async (values) => {
+    try {
+      console.log("inside try block")
+      const userCredential = await createUserWithEmailAndPassword(auth,values.email,values.password);
+      const user = userCredential.user;
+      await setDoc(doc(db,"users",user.uid),{
+        email:values.email,
+        createdAt:new Date(),
+      });
+      await AsyncStorage.setItem("userEmail", values.email);
+      router.push("/home");
+    }catch (e) {
+      console.log(e)
+      if(e.code==="auth/email-already-in-use"){
+        Alert.alert("Sign Up Failed!","Email already in use",[{text:"OK"}]);
+      }else{
+        Alert.alert("Sign Up Failed!","Unknown error occurred",[{text:"OK"}]);
+      }
+    }
   };
   const toggleIconName = ()=>{
     if(iconName === "eye"){

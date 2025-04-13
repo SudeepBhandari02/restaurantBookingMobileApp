@@ -15,14 +15,38 @@ import colors from "../../assets/themeColors";
 import frame from "../../assets/images/Frame.png";
 import { Formik } from "formik";
 import validationSchema from "../../validation/validationSchema";
-import { router } from "expo-router";
+import {useRouter} from "expo-router";
 import Entypo from '@expo/vector-icons/Entypo';
+import {getAuth,signInWithEmailAndPassword} from "firebase/auth";
+import {doc, getDoc, getFirestore} from "firebase/firestore";
+import asyncStorage from "@react-native-async-storage/async-storage";
 
 const signup = () => {
     const [iconName, setIconName] = useState("eye");
     const [passwordVisibility, setPasswordVisibility] = useState(true);
-    const handleSignin = () => {
-        Alert.alert("Account Created Sucessfully!");
+
+    const auth = getAuth();
+    const db = getFirestore();
+    const router = useRouter();
+
+    const handleSignin =async (values) => {
+        try {
+            const userCredentials = await signInWithEmailAndPassword(auth,values.email, values.password);
+            const user = userCredentials.user;
+            const userDoc =await  getDoc(doc(db,"users",user.uid));
+            if(userDoc.exists()){
+              await asyncStorage.setItem("userEmail",values.email);
+              router.push("/home");
+            }
+        }catch (e){
+            console.log(e);
+            if(e.code==="auth/invalid-credential"){
+                Alert.alert("Sign in Failed!","Wrong credentials",[{text:"OK"}]);
+            }
+            else{
+                Alert.alert("Sign in Failed!","Account not found",[{text:"OK"}]);
+            }
+        }
     };
     const toggleIconName = ()=>{
         if(iconName === "eye"){
