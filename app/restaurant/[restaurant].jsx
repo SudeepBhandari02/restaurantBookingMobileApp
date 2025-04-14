@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {View, Text, ActivityIndicator, Pressable,Alert} from 'react-native';
 import {SafeAreaView} from "react-native-safe-area-context";
 import {useLocalSearchParams} from "expo-router";
-import {collection, getDocs, query, where} from "firebase/firestore";
+import {collection, getDocs, query, addDoc, where} from "firebase/firestore";
 import {db} from "../../configurations/firebaseConfig";
 import colors from "../../assets/themeColors";
 import CarouselSlider from "../../components/carouselSlider";
@@ -11,6 +11,7 @@ import DatePickerComponent from "../../components/DatePickerComponent";
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import PeopleSelector from "../../components/PeopleSelector";
 import SlotFinder from "../../components/SlotFinder";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Restaurant= () => {
     const [restaurantData, setRestaurantData] = useState({});
@@ -75,6 +76,25 @@ const Restaurant= () => {
         }
     }
 
+    const handleBooking =async  () =>{
+        const email = await AsyncStorage.getItem("userEmail");
+
+        if(email){
+            try{
+               await  addDoc(collection(db,"bookings"),{
+                    email:email,
+                    date:date.toISOString(),
+                    restaurant:restaurant,
+                    slot:selectedSlot,
+                });
+               Alert.alert("Slot Booked","Booking was successful",[{text:"OK"}]);
+            }catch (e) {
+                console.log(e);
+                Alert.alert("Error Occurred","Try Again Later !",[{text:"OK"}]);
+            }
+        }
+    }
+
     useEffect(()=>{getDataFromDB()},[]);
 
     return (
@@ -113,7 +133,7 @@ const Restaurant= () => {
                     <PeopleSelector peopleSelected={peopleSelected} setPeopleSelected={setPeopleSelected} />
                 </View>
             </View>
-            <SlotFinder slots={slotsData} selectedSlot={selectedSlot} setSelectedSlot={setSelectedSlot} />
+            <SlotFinder slots={slotsData} selectedSlot={selectedSlot} setSelectedSlot={setSelectedSlot} handleBooking={handleBooking} />
 
 
         </SafeAreaView>

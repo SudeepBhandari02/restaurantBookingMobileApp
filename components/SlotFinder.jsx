@@ -4,7 +4,8 @@ import React, { useState } from "react";
 const FindSlots = ({
                        slots,
                        selectedSlot,
-                       setSelectedSlot, // optional callback
+                       setSelectedSlot,
+                       handleBooking,
                    }) => {
     const [slotsVisible, setSlotsVisible] = useState(false);
 
@@ -32,7 +33,7 @@ const FindSlots = ({
                 </View>
                 {selectedSlot && (
                     <View className="flex-1">
-                        <TouchableOpacity >
+                        <TouchableOpacity onPress={handleBooking} >
                             <Text className="text-center text-white text-lg font-semibold bg-[#f49b33] p-2 my-3 mx-2 rounded-lg">
                                 Book Slot
                             </Text>
