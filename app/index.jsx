@@ -1,14 +1,22 @@
-import {View, Text, Button, ScrollView, Image, TouchableOpacity} from 'react-native';
+import {View, Text, ScrollView, Image, TouchableOpacity} from 'react-native';
 import {useRouter} from "expo-router";
 import {SafeAreaView} from "react-native-safe-area-context";
 import logo from "../assets/images/dinetimelogo.png"
 import frame from "../assets/images/Frame.png"
 import {StatusBar} from "expo-status-bar";
 import colors from "../assets/themeColors"
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 export default function Index() {
   const router = useRouter();
+
+  const handleGuest = async () =>{
+      await AsyncStorage.setItem("userGuest", "true");
+      await AsyncStorage.removeItem("userEmail");
+      router.push("/home");
+  }
+
   return (
     <SafeAreaView style={{backgroundColor:colors.SECONDARY}} >
       <ScrollView  style={{height:'100%'}} contentContainerStyle={{justifyContent:'center'}}>
@@ -24,7 +32,7 @@ export default function Index() {
                  <Text className={"text-2xl font-semibold text-center"}>Sign Up</Text>
               </TouchableOpacity>
 
-             <TouchableOpacity className={"w-3/4 p-3 self-center border-2 rounded-lg my-3"} style={{borderColor:colors.PRIMARY}} onPress={() => router.push("/home")} >
+             <TouchableOpacity className={"w-3/4 p-3 self-center border-2 rounded-lg my-3"} style={{borderColor:colors.PRIMARY}} onPress={handleGuest} >
                  <Text className={"text-2xl font-medium text-center"} style={{color:colors.PRIMARY}}>Guest User</Text>
              </TouchableOpacity>
 

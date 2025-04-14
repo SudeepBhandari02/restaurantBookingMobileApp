@@ -1,14 +1,14 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 
-const FindSlots = ({
+const SlotFinder = ({
                        slots,
                        selectedSlot,
                        setSelectedSlot,
                        handleBooking,
                    }) => {
     const [slotsVisible, setSlotsVisible] = useState(false);
-
+    console.log(slots);
     const handlePress = () => {
         setSlotsVisible(!slotsVisible);
     };
@@ -66,4 +66,4 @@ const FindSlots = ({
     );
 };
 
-export default FindSlots;
+export default SlotFinder;

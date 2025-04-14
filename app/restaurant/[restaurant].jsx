@@ -8,6 +8,7 @@ import colors from "../../assets/themeColors";
 import CarouselSlider from "../../components/carouselSlider";
 import {Ionicons} from "@expo/vector-icons";
 import DatePickerComponent from "../../components/DatePickerComponent";
+import GuestSubmitModal from "../../components/GuestSubmitModal";
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import PeopleSelector from "../../components/PeopleSelector";
 import SlotFinder from "../../components/SlotFinder";
@@ -18,8 +19,9 @@ const Restaurant= () => {
     const [carouselData, setCarouselData] = useState({});
     const [slotsData, setSlotsData] = useState({});
     const [date, setDate] = useState(new Date());
-    const [peopleSelected, setPeopleSelected] = useState(1)
-    const [selectedSlot, setSelectedSlot] = useState()
+    const [peopleSelected, setPeopleSelected] = useState(1);
+    const [selectedSlot, setSelectedSlot] = useState();
+    const [modalVisible, setModalVisible] = useState(false);
     const {restaurant} = useLocalSearchParams();
 
 
@@ -77,14 +79,15 @@ const Restaurant= () => {
     }
 
     const handleBooking =async  () =>{
+        console.log("clicked book");
         const email = await AsyncStorage.getItem("userEmail");
-
         if(email){
             try{
                await  addDoc(collection(db,"bookings"),{
                     email:email,
                     date:date.toISOString(),
                     restaurant:restaurant,
+                    guests: peopleSelected,
                     slot:selectedSlot,
                 });
                Alert.alert("Slot Booked","Booking was successful",[{text:"OK"}]);
@@ -92,6 +95,8 @@ const Restaurant= () => {
                 console.log(e);
                 Alert.alert("Error Occurred","Try Again Later !",[{text:"OK"}]);
             }
+        }else{
+            setModalVisible(true);
         }
     }
 
@@ -135,6 +140,7 @@ const Restaurant= () => {
             </View>
             <SlotFinder slots={slotsData} selectedSlot={selectedSlot} setSelectedSlot={setSelectedSlot} handleBooking={handleBooking} />
 
+            <GuestSubmitModal visible={modalVisible} setModalVisible={setModalVisible} selectedSlot={selectedSlot} date={date} peopleSelected={peopleSelected} restaurant={restaurant} />
 
         </SafeAreaView>
 

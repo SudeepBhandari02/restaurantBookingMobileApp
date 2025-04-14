@@ -36,6 +36,7 @@ const signup = () => {
             const userDoc =await  getDoc(doc(db,"users",user.uid));
             if(userDoc.exists()){
               await asyncStorage.setItem("userEmail",values.email);
+              await asyncStorage.setItem("userGuest","false");
               router.push("/home");
             }
         }catch (e){

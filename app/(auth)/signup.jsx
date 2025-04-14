@@ -19,6 +19,7 @@ import Entypo from '@expo/vector-icons/Entypo';
 import {getAuth,createUserWithEmailAndPassword} from "firebase/auth";
 import {doc, getFirestore, setDoc} from "firebase/firestore";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import asyncStorage from "@react-native-async-storage/async-storage";
 
 const signup = () => {
   const [iconName, setIconName] = useState("eye");
@@ -38,6 +39,7 @@ const signup = () => {
         createdAt:new Date(),
       });
       await AsyncStorage.setItem("userEmail", values.email);
+      await asyncStorage.setItem("userGuest","false");
       router.push("/home");
     }catch (e) {
       console.log(e)
